@@ -1,14 +1,13 @@
 package com.cblanco.beersapp.data.datasources
 
-import android.graphics.Movie
-import com.cblanco.beersapp.data.model.api.beerlist.BeerListApiResponse
+import com.cblanco.beersapp.data.model.api.beerlist.BeerApiResponse
 import com.cblanco.beersapp.data.model.ui.BeerUiModel
 
-class ServeBeerDataSource(private val beerRemoteService: BeerRemoteServices) : RemoteDataSource  {
+class ServeBeerDataSource(private val beerRemoteService: BeerRemoteServices) : RemoteDataSource {
 
     override suspend fun getBeerList(): List<BeerUiModel> {
-        val beersResult = beerRemoteService.getMovieDetail()
-        return beersResult.map { remoteBeer: BeerListApiResponse ->
+        val beersResult = beerRemoteService.getBeerList()
+        return beersResult.map { remoteBeer: BeerApiResponse ->
             BeerUiModel(
                 remoteBeer.id,
                 remoteBeer.name,
@@ -16,5 +15,15 @@ class ServeBeerDataSource(private val beerRemoteService: BeerRemoteServices) : R
                 remoteBeer.imageUrl
             )
         }
+    }
+
+    override suspend fun getBeerDetail(beerId: Int): BeerUiModel {
+        val apiResult = beerRemoteService.getBeerDetail(beerId).first()
+        return BeerUiModel(
+            apiResult.id,
+            apiResult.name,
+            apiResult.description,
+            apiResult.imageUrl
+        ).apply { degrees = apiResult.abv ?: 0.0 }
     }
 }

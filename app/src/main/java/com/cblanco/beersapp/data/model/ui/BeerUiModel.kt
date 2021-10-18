@@ -5,4 +5,7 @@ class BeerUiModel(
     var name:String?,
     var description:String?,
     var image_url:String?
-)
+){
+    var degrees:Double = 0.0
+
+}

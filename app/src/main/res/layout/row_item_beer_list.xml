@@ -5,6 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="12dp"
     app:cardCornerRadius="20dp"
+    android:id="@+id/beerItem"
     app:cardBackgroundColor="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout

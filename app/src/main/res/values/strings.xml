@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Beers</string>
+    <string name="label_search_beer">Buscar</string>
 </resources>

@@ -3,7 +3,7 @@ package com.cblanco.beersapp.data.model.api.beerlist
 
 import com.google.gson.annotations.SerializedName
 
-data class BeerListApiResponse(
+data class BeerApiResponse(
     @SerializedName("abv")
     var abv: Double?, // 4.5
     @SerializedName("attenuation_level")

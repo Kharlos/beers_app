@@ -24,5 +24,9 @@
         android:id="@+id/beerDetailFragment"
         android:name="com.cblanco.beersapp.ui.home.beer.detail.BeerDetailFragment"
         android:label="beer_detail_fragment"
-        tools:layout="@layout/beer_detail_fragment" />
+        tools:layout="@layout/beer_detail_fragment" >
+        <argument
+            android:name="beerId"
+            app:argType="integer" />
+    </fragment>
 </navigation>

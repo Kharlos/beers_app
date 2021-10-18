@@ -4,8 +4,9 @@ import com.cblanco.beersapp.data.model.ui.BeerUiModel
 
 
 interface RemoteDataSource {
+
     suspend fun getBeerList(): List<BeerUiModel>
 
-    //suspend fun getMovieDetail(beerId:Int): RemoteMovieDetail
+    suspend fun getBeerDetail(beerId:Int): BeerUiModel
 
 }

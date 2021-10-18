@@ -8,4 +8,6 @@ class BeerRepository @Inject constructor(private val remoteDataSource: RemoteDat
 
     suspend fun getBeerList():List<BeerUiModel> = remoteDataSource.getBeerList()
 
+    suspend fun getBeerDetail(beerId:Int):BeerUiModel = remoteDataSource.getBeerDetail(beerId)
+
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_main.xml"
+    app:startDestination="@id/beerListFragment">
+
+
+    <fragment
+        android:id="@+id/beerListFragment"
+        android:name="com.cblanco.beersapp.ui.home.beer.list.BeerListFragment"
+        android:label="beer_list_fragment"
+        tools:layout="@layout/beer_list_fragment">
+        <action
+            android:id="@+id/action_beerListFragment_to_beerDetailFragment"
+            app:destination="@id/beerDetailFragment"
+            app:enterAnim="@anim/transition_in_right"
+            app:exitAnim="@anim/transition_out_left"
+            app:popEnterAnim="@anim/transition_in_left"
+            app:popExitAnim="@anim/transition_out_right"
+            app:popUpTo="@id/beerListFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/beerDetailFragment"
+        android:name="com.cblanco.beersapp.ui.home.beer.detail.BeerDetailFragment"
+        android:label="beer_detail_fragment"
+        tools:layout="@layout/beer_detail_fragment" />
+</navigation>

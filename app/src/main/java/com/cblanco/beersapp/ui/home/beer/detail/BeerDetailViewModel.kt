@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cblanco.beersapp.data.model.ui.BeerUiModel
-import com.cblanco.beersapp.usecases.LoadBeerListUseCase
+import com.cblanco.beersapp.usecases.LoadBeerUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class BeerDetailViewModel @Inject constructor(private val loadBeerListUseCase: LoadBeerListUseCase) :
+class BeerDetailViewModel @Inject constructor(private val loadBeerUseCase: LoadBeerUseCase) :
     ViewModel() {
 
     private val _progressBar = MutableLiveData<Boolean>()
@@ -30,7 +30,7 @@ class BeerDetailViewModel @Inject constructor(private val loadBeerListUseCase: L
         }
         viewModelScope.launch(Dispatchers.IO + handlerError) {
             _progressBar.postValue(true)
-            _beerDetail.postValue(loadBeerListUseCase.getBeerDetail(beerId))
+            _beerDetail.postValue(loadBeerUseCase.getBeerDetail(beerId))
             _progressBar.postValue(false)
         }
     }

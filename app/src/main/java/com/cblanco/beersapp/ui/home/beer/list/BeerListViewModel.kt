@@ -5,13 +5,13 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.cblanco.beersapp.data.model.ui.BeerUiModel
-import com.cblanco.beersapp.usecases.LoadBeerListUseCase
+import com.cblanco.beersapp.usecases.LoadBeerUseCase
 import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-class BeerListViewModel @Inject constructor(private val loadBeerListUseCase: LoadBeerListUseCase) :
+class BeerListViewModel @Inject constructor(private val loadBeerUseCase: LoadBeerUseCase) :
     ViewModel() {
     private val _progressBar = MutableLiveData<Boolean>()
     val progressBar: LiveData<Boolean> = _progressBar
@@ -24,7 +24,7 @@ class BeerListViewModel @Inject constructor(private val loadBeerListUseCase: Loa
 
     private val _filters = MutableLiveData<List<BeerUiModel>>()
     var filters: MutableLiveData<List<BeerUiModel>> = _filters
-    private var allBeers: List<BeerUiModel>? = null
+    var allBeers: List<BeerUiModel>? = null
 
 
     fun getBeerList() {
@@ -34,7 +34,7 @@ class BeerListViewModel @Inject constructor(private val loadBeerListUseCase: Loa
         }
         viewModelScope.launch(Dispatchers.IO + handlerError) {
             _progressBar.postValue(true)
-            allBeers = loadBeerListUseCase.getBeerList()
+            allBeers = loadBeerUseCase.getBeerList()
             if (allBeers?.isNotEmpty() == true) {
                 _beers.postValue(allBeers!!)
             } else
